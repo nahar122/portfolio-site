@@ -55,7 +55,7 @@ const ServicesSection: React.FC = () => {
               <h4 className="text-xl font-semibold">
                 Software Engineer | Miami, FL
               </h4>
-              <p className="text-md font-quicksand">
+              <p className="text-md font-quicksand text-gray-500">
                 As a professional software developer, I specialize in web
                 automation, web scraping, and full-stack engineering to drive
                 efficiency and engagement for businesses. With expertise in
