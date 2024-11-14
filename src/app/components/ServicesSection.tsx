@@ -34,10 +34,7 @@ const ServicesSection: React.FC = () => {
   ];
 
   return (
-    <section
-      id="services"
-      className="bg-light font-quicksand sm:mt-10 lg:mt-16"
-    >
+    <section id="services" className="bg-light font-quicksand lg:mt-16">
       <div className="container mx-auto flex-col md:flex-row lg:flex">
         <div className="flex flex-1 flex-col justify-evenly px-5">
           {/* Updated Container with relative positioning and defined width & height */}
@@ -86,7 +83,7 @@ const ServicesSection: React.FC = () => {
             </a>
           </div>
         </div>
-        <div className="flex-1 px-5">
+        <div className="mt-10 flex-1 px-5 md:mt-0">
           <div className="mx-auto mt-2 flex h-full w-full flex-col gap-4 text-right md:justify-between">
             <h2 className="flex justify-center py-4 text-center font-mohave text-4xl font-bold text-black md:text-right lg:flex-col lg:text-7xl">
               <span>Services </span>

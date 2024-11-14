@@ -4,12 +4,12 @@ import React from "react";
 const ContactSection: React.FC = () => {
   return (
     <section id="contact" className="mt-20 w-full bg-deep-red">
-      <div id="main" className="mx-auto w-[50%] py-10 text-center">
+      <div id="main" className="mx-auto px-4 py-5 text-center md:w-[50%]">
         <div>
-          <h2 className="mb-12 font-mohave text-6xl font-bold text-white">
+          <h2 className="mb-4 font-mohave text-6xl font-bold text-white lg:mb-10">
             CONTACT
           </h2>
-          <p className="mb-8 text-lg text-white">
+          <p className="text-md mb-8 text-white md:text-lg">
             Do you have any questions or would you like to request a free quote
             for a web application, scraper, automation, or anything else? Feel
             free to contact me, and I'll be happy to assist you.

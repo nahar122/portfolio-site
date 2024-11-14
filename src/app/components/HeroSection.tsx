@@ -7,7 +7,7 @@ import Image from "next/image";
 
 const HeroSection: React.FC = () => {
   return (
-    <section className="container mx-auto bg-light">
+    <section id="home" className="container mx-auto bg-light">
       <div className="flex flex-col font-mohave text-black lg:flex-row lg:items-center lg:justify-around lg:gap-16">
         <div className="text-center sm:gap-10 lg:max-w-xl lg:text-left">
           <TypeWriter text="WHO AM I?" speed={100} />

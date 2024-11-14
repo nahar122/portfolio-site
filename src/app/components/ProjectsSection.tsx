@@ -25,7 +25,7 @@ const ProjectsSection: React.FC = () => {
     <section id="projects" className="mt-20 bg-gray-100 py-20">
       <Banner />
       <div className="container mx-auto text-center">
-        <h2 className="mb-12 text-left font-mohave text-7xl font-bold text-black">
+        <h2 className="mb-12 text-center font-mohave text-7xl font-bold text-black md:text-left">
           PROJECTS
         </h2>
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2">

@@ -10,11 +10,9 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       <Header />
       <main
         // className="mx-auto mt-20 flex flex-col bg-light p-10 pb-0 lg:max-w-[2250px] xl:py-16"
-        className="mt-20 bg-light"
+        className="mt-20 bg-light p-10"
       >
-        <div className="mx-auto w-3/4 px-20 md:border-x-[1px] md:border-black">
-          {children}
-        </div>
+        {children}
       </main>
       <footer className="w-full text-center text-white">
         <ContactSection />
