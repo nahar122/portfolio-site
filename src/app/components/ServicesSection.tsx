@@ -70,7 +70,7 @@ const ServicesSection: React.FC = () => {
           <div className="mt-7 flex w-full flex-col gap-4 self-end lg:mt-10 lg:flex-row">
             <a
               download
-              href="/nahar)saias_cv.pdf"
+              href="/nahar_saias_cv.pdf"
               className="flex flex-1 items-center justify-center border-2 border-black bg-primary-red p-3 text-center font-quicksand font-semibold text-black shadow-[7px_7px_0px_black] transition-shadow duration-300 hover:shadow-none lg:px-10"
             >
               <span>MY RESUME</span>
