@@ -37,12 +37,6 @@ const ProjectsSection: React.FC = () => {
                   {project.title}
                 </h3>
                 <p className="mb-4 text-gray-600">{project.description}</p>
-                <a
-                  href={project.link}
-                  className="text-blue-500 hover:underline"
-                >
-                  Read more
-                </a>
               </div>
             </div>
           ))}
