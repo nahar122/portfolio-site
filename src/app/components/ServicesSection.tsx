@@ -38,7 +38,7 @@ const ServicesSection: React.FC = () => {
       id="services"
       className="bg-light font-quicksand sm:mt-10 lg:mt-16"
     >
-      <div className="container mx-auto flex-col md:flex-row md:border-x-[1px] md:border-black lg:flex">
+      <div className="container mx-auto flex-col md:flex-row lg:flex">
         <div className="flex flex-1 flex-col justify-evenly px-5">
           {/* Updated Container with relative positioning and defined width & height */}
           <div className="relative mt-10 h-40 w-full transition-all lg:mt-0 lg:h-96">
@@ -52,7 +52,7 @@ const ServicesSection: React.FC = () => {
           </div>
           <div>
             <article className="mt-4 text-left font-mohave">
-              <h4 className="text-xl font-semibold">
+              <h4 className="text-xl font-semibold text-black">
                 Software Engineer | Miami, FL
               </h4>
               <p className="text-md font-quicksand text-gray-500">
@@ -74,42 +74,41 @@ const ServicesSection: React.FC = () => {
             <a
               download
               href="/nahar)saias_cv.pdf"
-              className="flex-1 border-2 border-black bg-primary-red p-3 text-center font-quicksand font-semibold text-black shadow-[7px_7px_0px_black] transition-shadow duration-300 hover:shadow-none lg:px-10"
+              className="flex flex-1 items-center justify-center border-2 border-black bg-primary-red p-3 text-center font-quicksand font-semibold text-black shadow-[7px_7px_0px_black] transition-shadow duration-300 hover:shadow-none lg:px-10"
             >
-              MY RESUME
+              <span>MY RESUME</span>
             </a>
             <a
               href="#projects"
-              className="flex-1 border-2 border-black bg-white p-3 text-center font-quicksand font-semibold text-black shadow-[7px_7px_0px_black] transition-shadow duration-300 hover:shadow-none lg:px-10"
+              className="flex flex-1 items-center justify-center border-2 border-black bg-white p-3 text-center font-quicksand font-semibold text-black shadow-[7px_7px_0px_black] transition-shadow duration-300 hover:shadow-none lg:px-10"
             >
-              PROJECTS
+              <span>PROJECTS</span>
             </a>
           </div>
         </div>
         <div className="flex-1 px-5">
           <div className="mx-auto mt-2 flex h-full w-full flex-col gap-4 text-right md:justify-between">
-            <h2 className="flex justify-center py-4 text-center font-mohave text-4xl font-bold lg:flex-col lg:text-7xl">
+            <h2 className="flex justify-center py-4 text-center font-mohave text-4xl font-bold text-black md:text-right lg:flex-col lg:text-7xl">
               <span>Services </span>
               <span>&nbsp;& Tech</span>
             </h2>
 
             {images
               .sort((a, b) => b.value - a.value)
-              .map((image, index) => {
-                return (
-                  <SkillCard
-                    reverse={true}
-                    image={{
-                      src: `/techstack/${image.src}`,
-                      width: 50,
-                      height: 50,
-                      alt: `${image.src} icon`,
-                    }}
-                    key={index}
-                    progressValue={image.value}
-                  />
-                );
-              })}
+              .map((image, index) => (
+                <SkillCard
+                  reverse={true}
+                  image={{
+                    src: `/techstack/${image.src}`,
+                    width: 50,
+                    height: 50,
+                    alt: `${image.src} icon`,
+                  }}
+                  progressValue={image.value}
+                  delay={index * 100} // Staggered delay in milliseconds
+                  key={index}
+                />
+              ))}
           </div>
         </div>
       </div>

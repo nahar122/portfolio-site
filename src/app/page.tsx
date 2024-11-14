@@ -47,7 +47,7 @@ export default function Home() {
       </div>
       <ServicesSection />
       <ProjectsSection />
-      <ContactSection />
+      {/* <ContactSection /> */}
     </Layout>
   );
 }

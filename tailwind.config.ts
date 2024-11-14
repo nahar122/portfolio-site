@@ -20,6 +20,7 @@ const config: Config = {
       colors: {
         "primary-red": "rgb(255 70 84)",
         light: "rgb(246 246 246)",
+        "deep-red": "rgb(233 17 34)",
       },
       fontFamily: {
         quicksand: ["var(--font-quicksand)", "sans-serif"],

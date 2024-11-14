@@ -10,11 +10,12 @@ const HeroSection: React.FC = () => {
     <section className="container mx-auto bg-light">
       <div className="flex flex-col font-mohave text-black lg:flex-row lg:items-center lg:justify-around lg:gap-16">
         <div className="text-center sm:gap-10 lg:max-w-xl lg:text-left">
-          <TypeWriter text="About Me" speed={100} />
+          <TypeWriter text="WHO AM I?" speed={100} />
           <p className="mb-4 mt-4 text-center font-quicksand text-gray-500 lg:text-left lg:text-2xl">
-            I empower your business with state-of-the-art digital solutions,
-            such as websites, web applications, web scraping, and web
-            automations, with a tailored approach based on your specific needs.
+            A professional software engineer dedicated to empowering your
+            business with state-of-the-art digital solutions, such as websites,
+            web applications, web scraping, and web automations, with a tailored
+            approach based on your specific needs.
           </p>
           <Carousel
             items={[

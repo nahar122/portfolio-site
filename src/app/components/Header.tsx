@@ -15,7 +15,7 @@ const Header = () => {
           {["Home", "Services", "Projects", "Contact"].map((item) => (
             <div key={item} className="group flex flex-col items-center">
               <a
-                href="#"
+                href={`#${item.toLowerCase()}`}
                 className="rounded-md px-3 py-2 hover:text-primary-red lg:text-xl"
               >
                 {item}

@@ -8,6 +8,10 @@
   }
 }
 
+/* .bg-diagonal {
+  background: linear-gradient(300deg, rgb(233 17 34) 60%, #ffffff 50%);
+} */
+
 :root {
   --background: #ffffff;
   --foreground: #171717;

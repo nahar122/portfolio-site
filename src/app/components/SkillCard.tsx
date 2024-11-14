@@ -45,6 +45,7 @@ w-[100%]
 */
 
 import Image from "next/image";
+import { useInView } from "react-intersection-observer";
 
 interface SkillCardProps {
   reverse: boolean;
@@ -55,59 +56,32 @@ interface SkillCardProps {
     alt: string;
   };
   progressValue: number;
+  delay: number; // Add delay prop for staggered animation
 }
 
-const SkillCard = (props: SkillCardProps) => {
-  const { reverse, image, progressValue } = props;
+const SkillCard: React.FC<SkillCardProps> = ({
+  reverse,
+  image,
+  progressValue,
+  delay,
+}) => {
+  const { ref, inView } = useInView({
+    triggerOnce: true, // Trigger only once when in view
+    threshold: 0.4, // Trigger when 10% of the component is in view
+  });
 
-  // Determine colors based on progressValue
-  let colorKey: "red" | "yellow" | "blue" | "green" = "red";
-
-  if (progressValue < 50) {
-    colorKey = "red";
-  } else if (progressValue >= 50 && progressValue <= 70) {
-    colorKey = "yellow";
-  } else if (progressValue > 70 && progressValue <= 80) {
-    colorKey = "blue";
-  } else {
-    colorKey = "green";
-  }
-
-  const colorMap = {
-    red: { dark: "red-500", light: "red-300" },
-    yellow: { dark: "yellow-500", light: "yellow-300" },
-    blue: { dark: "blue-500", light: "blue-300" },
-    green: { dark: "green-500", light: "green-300" },
-  };
-
-  const borderColor = colorMap[colorKey].dark;
-  const fillColorDark = colorMap[colorKey].dark;
-  const fillColorLight = colorMap[colorKey].light;
-
-  const imageClassName = [
-    reverse ? "rounded-lg border-2" : "border-2 rounded-lg",
-    "border-b-2 border-t-2 p-2",
-    `border-${borderColor}`,
-  ].join(" ");
-
-  const progressBarContainerClassName = [
-    "w-full",
-    reverse ? "rounded-l-full border-l-2" : "border-r-2 rounded-r-full",
-    "border-b-2 border-t-2",
-    `border-${borderColor}`,
-  ].join(" ");
-
-  const progressBarClassName = [
-    "h-full",
-    `w-[${progressValue}%]`,
-    reverse ? "rounded-r-full" : "rounded-l-full",
-    "bg-gradient-to-r",
-    `from-${fillColorDark}`,
-    `to-${fillColorLight}`,
-  ].join(" ");
+  // Tailwind-based animation classes with dynamic delay
+  const animationClass = inView
+    ? `opacity-100 translate-y-0 transition duration-500 ease-out delay-${delay}`
+    : "opacity-0 translate-y-10";
 
   return (
-    <div className={`flex gap-2 ${reverse ? "flex-row-reverse" : "flex-row"}`}>
+    <div
+      ref={ref}
+      className={`flex gap-2 align-middle items-center ${
+        reverse ? "flex-row-reverse" : "flex-row"
+      } ${animationClass}`}
+    >
       {image ? (
         <>
           <Image
@@ -115,24 +89,25 @@ const SkillCard = (props: SkillCardProps) => {
             alt={image.alt}
             width={image.width}
             height={image.height}
-            // className={`border-b-2 border-t-2 p-2 border-${borderColor} ${
-            //   reverse ? "rounded-r-lg border-r-2" : "border-l-2 rounded-l-lg"
-            // }`}
+            className={`border-2 p-2 border-${
+              reverse ? "r" : "l"
+            }-2 rounded-lg`}
           />
           <div
-            className={`w-full border-b-2 border-${borderColor} border-t-2 ${
-              reverse ? "rounded-full border-2" : "border-2 rounded-full"
+            className={`w-full h-4 border-2 rounded-full ${
+              reverse ? "rounded-l-full" : "rounded-r-full"
             }`}
           >
             <div
-              className={`h-full w-[${progressValue}%] bg-gradient-to-r from-${fillColorDark} to-${fillColorLight} ${
-                reverse ? "rounded-full" : "rounded-full"
-              }`}
+              className={`h-full ${
+                reverse ? "rounded-r-full" : "rounded-l-full"
+              } bg-gradient-to-r from-green-500 to-green-300`}
+              style={{ width: `${progressValue}%` }}
             ></div>
           </div>
         </>
       ) : (
-        <div className="">LOGO GOES HERE</div>
+        <div>LOGO GOES HERE</div>
       )}
     </div>
   );
