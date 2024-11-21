@@ -1,5 +1,5 @@
-// components/Carousel.tsx
-import React, { useState } from "react";
+// components/ImageCarousel.tsx
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 
 interface ImageCarouselProps {
@@ -8,41 +8,86 @@ interface ImageCarouselProps {
 
 const ImageCarousel: React.FC<ImageCarouselProps> = ({ images }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [prevIndex, setPrevIndex] = useState<number | null>(null);
+  const [direction, setDirection] = useState<"next" | "prev">("next");
+  const [animating, setAnimating] = useState(false);
   const totalSlides = images.length;
 
   const prevSlide = () => {
+    if (animating) return;
+    setAnimating(true);
+    setPrevIndex(currentIndex);
+    setDirection("prev");
     setCurrentIndex((prev) => (prev === 0 ? totalSlides - 1 : prev - 1));
   };
 
   const nextSlide = () => {
+    if (animating) return;
+    setAnimating(true);
+    setPrevIndex(currentIndex);
+    setDirection("next");
     setCurrentIndex((prev) => (prev === totalSlides - 1 ? 0 : prev + 1));
   };
 
+  useEffect(() => {
+    if (animating) {
+      const timer = setTimeout(() => {
+        setAnimating(false);
+        setPrevIndex(null); // Clean up previous image
+      }, 500); // Match animation duration
+      return () => clearTimeout(timer);
+    }
+  }, [animating]);
+
   return (
-    <div className="relative aspect-[1] bg-light">
+    <div className="relative aspect-square overflow-hidden bg-light">
+      {/* Previous Image */}
+      {animating && prevIndex !== null && (
+        <Image
+          key={prevIndex}
+          src={images[prevIndex]}
+          alt={`Slide ${prevIndex}`}
+          fill
+          className={`absolute inset-0 h-full w-full rounded-lg p-4 object-contain ${
+            direction === "next"
+              ? "animate-slideOutToLeft"
+              : "animate-slideOutToRight"
+          }`}
+        />
+      )}
+
+      {/* Current Image */}
       <Image
+        key={currentIndex}
         src={images[currentIndex]}
         alt={`Slide ${currentIndex}`}
         fill
-        objectFit="contain"
-        className="absolute bottom-0 left-0 right-0 top-0 h-full w-full rounded-lg p-4"
+        className={`absolute inset-0 h-full w-full rounded-lg p-4 object-contain ${
+          animating
+            ? direction === "next"
+              ? "animate-slideInFromRight"
+              : "animate-slideInFromLeft"
+            : ""
+        }`}
       />
-      <button
-        onClick={prevSlide}
-        className={`absolute ${
-          images.length <= 1 ? "hidden " : "visible "
-        } left-4 top-1/2 -translate-y-1/2 transform rounded-full bg-gray-800 py-2 px-4 text-white`}
-      >
-        ❮
-      </button>
-      <button
-        onClick={nextSlide}
-        className={`absolute ${
-          images.length <= 1 ? "hidden " : "visible "
-        }right-4 top-1/2 -translate-y-1/2 transform rounded-full bg-gray-800 py-2 px-4 text-white`}
-      >
-        ❯
-      </button>
+
+      {/* Navigation Buttons */}
+      {images.length > 1 && (
+        <>
+          <button
+            onClick={prevSlide}
+            className="absolute left-4 top-1/2 -translate-y-1/2 transform rounded-full bg-gray-800 px-4 py-2 text-white"
+          >
+            ❮
+          </button>
+          <button
+            onClick={nextSlide}
+            className="absolute right-4 top-1/2 -translate-y-1/2 transform rounded-full bg-gray-800 px-4 py-2 text-white"
+          >
+            ❯
+          </button>
+        </>
+      )}
     </div>
   );
 };

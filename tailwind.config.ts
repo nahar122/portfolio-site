@@ -10,11 +10,31 @@ const config: Config = {
     extend: {
       animation: {
         "scroll-infinite": "scroll 10s linear infinite", // Adjust timing for speed
+        slideInFromRight: "slideInFromRight 0.5s ease-out forwards",
+        slideOutToLeft: "slideOutToLeft 0.5s ease-out forwards",
+        slideInFromLeft: "slideInFromLeft 0.5s ease-out forwards",
+        slideOutToRight: "slideOutToRight 0.5s ease-out forwards",
       },
       keyframes: {
         scroll: {
           from: { transform: "translateX(0%)" },
           to: { transform: "translateX(-50%)" }, // Move full width to create a loop
+        },
+        slideInFromRight: {
+          "0%": { transform: "translateX(100%)" },
+          "100%": { transform: "translateX(0)" },
+        },
+        slideOutToLeft: {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-100%)" },
+        },
+        slideInFromLeft: {
+          "0%": { transform: "translateX(-100%)" },
+          "100%": { transform: "translateX(0)" },
+        },
+        slideOutToRight: {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(100%)" },
         },
       },
       colors: {

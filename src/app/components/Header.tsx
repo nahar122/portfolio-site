@@ -68,21 +68,24 @@ const Header = () => {
         </div>
       </div>
 
-      {isOpen && (
-        <div className="md:hidden">
-          <div className="space-y-1 px-2 pb-3 pt-2 sm:px-3">
-            {["Home", "Services", "Projects", "Contact"].map((item) => (
-              <a
-                key={item}
-                href="#"
-                className="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900"
-              >
-                {item}
-              </a>
-            ))}
-          </div>
+      {/* Animated Mobile Menu */}
+      <div
+        className={`md:hidden overflow-hidden transition-[max-height] duration-300 ease-in-out ${
+          isOpen ? "max-h-screen" : "max-h-0"
+        }`}
+      >
+        <div className="space-y-1 px-2 pb-3 pt-2 sm:px-3">
+          {["Home", "Services", "Projects", "Contact"].map((item) => (
+            <a
+              key={item}
+              href={`#${item.toLowerCase()}`}
+              className="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900"
+            >
+              {item}
+            </a>
+          ))}
         </div>
-      )}
+      </div>
     </header>
   );
 };
